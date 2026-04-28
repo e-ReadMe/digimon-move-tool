@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Species Generator</title>
+<style>
+    @font-face {
+        font-family: tbs_pokemon_emerald;
+        src: url('pokemon_emerald.ttf');
+    }
+    body { font-family: Arial; padding: 20px; }
+    input, textarea { margin: 5px 0; width: 300px; }
+    button { margin-top: 10px; }
+    #textOverlay { position: absolute; background: transparent; border: none; outline: none; resize: none; padding: 20px 0 0; color: #636363; overflow: hidden; }
+</style>
+</head>
+<body>
+
+<h2>Move Generator V1</h2>
+<br> 
+
+
+<a href="https://github.com/e-ReadMe/pokeemerald-expansion_Project_ReLoad/blob/master/src/data/moves_info.h"target="_blank">Link to the move list</a><br><br>
+
+<button onclick="generate()">Generate File</button>
+
+<script>
+function generate() {
+
+
+    const output = `[MOVE_TEST] =
+    {
+    [MOVE_SPLASH] =
+    {
+        .name = COMPOUND_STRING("Splash"),
+        .description = COMPOUND_STRING(
+            "It's just a splash...\n"
+            "Has no effect whatsoever."),
+        .effect = EFFECT_DO_NOTHING,
+        .power = 0,
+        .type = TYPE_NORMAL,
+        .accuracy = 0,
+        .pp = 40,
+        .target = TARGET_USER,
+        .priority = 0,
+        .category = DAMAGE_CATEGORY_STATUS,
+        .zMove = { .effect = Z_EFFECT_ATK_UP_3 },
+        .ignoresProtect = TRUE,
+        .mirrorMoveBanned = TRUE,
+        .gravityBanned = TRUE,
+        .contestEffect = CONTEST_EFFECT_BETTER_IF_LAST, //C_UPDATED_MOVE_EFFECTS >= GEN_6 ? CONTEST_EFFECT_QUICKLY_GROW_BORED :
+        .contestCategory = CONTEST_CATEGORY_CUTE,
+        .contestComboStarterId = 0,
+        .contestComboMoves = {0},
+        .battleAnimScript = gBattleAnimMove_Splash,
+    },
+
+},`;
+    downloadFile(`MOVE_TEST.txt`, output);
+}
+
+function downloadFile(filename, content) {
+    const blob = new Blob([content], { type: "text/plain" });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = filename;
+    a.click();
+}
+</script>
+
+</body>
+</html>

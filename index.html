@@ -15,7 +15,7 @@
 </head>
 <body>
 
-<h2>Move Generator V3</h2>
+<h2>Move Generator V4</h2>
 <br> 
 
 
@@ -60,9 +60,9 @@ function generate() {
 
     const output = `[MOVE_${movename}] =
     {
-    [MOVE_SPLASH] =
+    [MOVE_${movename}] =
     {
-        .name = COMPOUND_STRING("Splash"),
+        .name = COMPOUND_STRING("${movename}"),
         .description = COMPOUND_STRING(
             "It's just a splash...\n"
             "Has no effect whatsoever."),

@@ -15,7 +15,7 @@
 </head>
 <body>
 
-<h2>Move Generator V6</h2>
+<h2>Move Generator V7</h2>
 <br> 
 
 
@@ -46,7 +46,28 @@
   <option value="TYPE_DARK">Dark</option>
   <option value="TYPE_PUPPET">Puppet</option>
 </select><br><br>  
- <label>Accuracy (default is 100%):</label><input id="accuracy" type="number" placeholder="0"><label>%</label><br><br>
+    <label>Category:</label>
+<select id="category">
+  <option value="PHYSICAL">Physical</option>
+  <option value="SPECIAL">Special</option>
+  <option value="STATUS">Status</option>
+</select><br><br>  
+ <label>Accuracy (default is 100%):</label><input id="accuracy" type="number" placeholder="0"><label>%</label><br><br>  
+ <label>PP (default is 10):</label><input id="accuracy" type="number" placeholder="0"><label>%</label><br><br>
+<label>Priority (default is 0):</label><input id="priority" type="number"><br><br>
+    <label>Target:</label>
+<select id="target (Default is 'selected')">
+  <option value="SELECTED">Selected</option>
+  <option value="BOTH">Both Opponents</option>
+  <option value="USER">User</option>
+  <option value="ALLY">Ally (e.g. helping hand)</option>
+  <option value="ALL_BATTLERS">All Battlers (e.g. flower gift)</option>
+  <option value="FOES_AND_ALLY">Foes and Ally (e.g. earthquake)</option>
+  <option value="FIELD">Field (e.g. weather)</option>
+  <option value="OPPONENTS_FIELD">Opponent's Field (e.g. spikes)</option>
+  <option value="RANDOM">Random (e.g. Outrage)</option>
+</select><br><br>  
+    
     
 <button onclick="generate()">Generate File</button>
 
@@ -56,6 +77,10 @@ function generate() {
     const power = document.getElementById("power").value;
     const type = document.getElementById("type").value;
     const accuracy = document.getElementById("accuracy").value || "100";
+    const pp = document.getElementById("pp").value || "10";
+    const target = document.getElementById("target").value || "SELECTED";
+    const priority = document.getElementById("priority").value || "0";
+    const category = document.getElementById("category").value || "PHYSICAL";
 
 
     const output = `[MOVE_${movename}] =
@@ -70,14 +95,10 @@ function generate() {
         .power = ${power},
         .type = TYPE_${type},
         .accuracy = ${accuracy},
-        .pp = 40,
-        .target = TARGET_USER,
-        .priority = 0,
-        .category = DAMAGE_CATEGORY_STATUS,
-        .zMove = { .effect = Z_EFFECT_ATK_UP_3 },
-        .ignoresProtect = TRUE,
-        .mirrorMoveBanned = TRUE,
-        .gravityBanned = TRUE,
+        .pp = ${pp},
+        .target = TARGET_${target},
+        .priority = ${priority},
+        .category = DAMAGE_CATEGORY_${category},
         .contestEffect = CONTEST_EFFECT_BETTER_IF_LAST, //C_UPDATED_MOVE_EFFECTS >= GEN_6 ? CONTEST_EFFECT_QUICKLY_GROW_BORED :
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .contestComboStarterId = 0,

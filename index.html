@@ -15,7 +15,7 @@
 </head>
 <body>
 
-<h2>Move Generator V5</h2>
+<h2>Move Generator V6</h2>
 <br> 
 
 
@@ -55,7 +55,7 @@ function generate() {
     const movename = document.getElementById("movename").value.toUpperCase().replace(/ /g, "_");
     const power = document.getElementById("power").value;
     const type = document.getElementById("type").value;
-    const accuracy = document.getElementById("accuracy").value??100
+    const accuracy = document.getElementById("accuracy").value || "100";
 
 
     const output = `[MOVE_${movename}] =

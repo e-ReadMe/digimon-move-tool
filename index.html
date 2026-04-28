@@ -15,7 +15,7 @@
 </head>
 <body>
 
-<h2>Move Generator V1</h2>
+<h2>Move Generator V3</h2>
 <br> 
 
 
@@ -23,8 +23,8 @@
 
     <label>------------------------Base Info ------------------------</label><br>
 
-<label>Move Name:</label> <input id="movename" placeholder="Flamethrower"><br>
-<label>Base Power:</label><input id="power" type="number"><br>
+<label>Move Name:</label> <input id="movename" placeholder="Flamethrower"><br><br>
+<label>Base Power:</label><input id="power" type="number"><br><br>
     <label>Type:</label>
 <select id="type">
   <option value="TYPE_NEUTRAL">Neutral</option>
@@ -45,8 +45,8 @@
   <option value="TYPE_DRAGON">Dragon</option>
   <option value="TYPE_DARK">Dark</option>
   <option value="TYPE_PUPPET">Puppet</option>
-</select>
-<br>   
+</select><br><br>  
+ <label>Accuracy (default is 100%):</label><input id="accuracy" type="number" placeholder="0"><label>%</label><br><br>
     
 <button onclick="generate()">Generate File</button>
 
@@ -55,9 +55,10 @@ function generate() {
     const movename = document.getElementById("movename").value.toUpperCase().replace(/ /g, "_");
     const power = document.getElementById("power").value;
     const type = document.getElementById("type").value;
+    const accuracy = document.getElementById("accuracy").value ?? 100
 
 
-    const output = `[MOVE_TEST] =
+    const output = `[MOVE_${movename}] =
     {
     [MOVE_SPLASH] =
     {
@@ -66,9 +67,9 @@ function generate() {
             "It's just a splash...\n"
             "Has no effect whatsoever."),
         .effect = EFFECT_DO_NOTHING,
-        .power = 0,
-        .type = TYPE_NORMAL,
-        .accuracy = 0,
+        .power = ${power},
+        .type = TYPE_${type},
+        .accuracy = ${accuracy},
         .pp = 40,
         .target = TARGET_USER,
         .priority = 0,

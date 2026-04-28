@@ -21,10 +21,40 @@
 
 <a href="https://github.com/e-ReadMe/pokeemerald-expansion_Project_ReLoad/blob/master/src/data/moves_info.h"target="_blank">Link to the move list</a><br><br>
 
+    <label>------------------------Base Info ------------------------</label><br>
+
+<label>Move Name:</label> <input id="movename" placeholder="Flamethrower"><br>
+<label>Base Power:</label><input id="power" type="number"><br>
+    <label>Type:</label>
+<select id="type">
+  <option value="TYPE_NEUTRAL">Neutral</option>
+  <option value="TYPE_COMBAT">Combat</option>
+  <option value="TYPE_WIND">Wind</option>
+  <option value="TYPE_FILTH">Filth</option>
+  <option value="TYPE_EARTH">Earth</option>
+  <option value="TYPE_BEAST">Beast</option>
+  <option value="TYPE_INSECT">Insect</option>
+  <option value="TYPE_UNDEAD">Undead</option>
+  <option value="TYPE_METAL">Metal</option>
+  <option value="TYPE_FIRE">Fire</option>
+  <option value="TYPE_WATER">Water</option>
+  <option value="TYPE_PLANT">Plant</option>
+  <option value="TYPE_ELECTRIC">Electric</option>
+  <option value="TYPE_LIGHT">Light</option>
+  <option value="TYPE_ICE">Ice</option>
+  <option value="TYPE_DRAGON">Dragon</option>
+  <option value="TYPE_DARK">Dark</option>
+  <option value="TYPE_PUPPET">Puppet</option>
+</select>
+<br>   
+    
 <button onclick="generate()">Generate File</button>
 
 <script>
 function generate() {
+    const movename = document.getElementById("movename").value.toUpperCase().replace(/ /g, "_");
+    const power = document.getElementById("power").value;
+    const type = document.getElementById("type").value;
 
 
     const output = `[MOVE_TEST] =

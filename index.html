@@ -15,7 +15,7 @@
 </head>
 <body>
 
-<h2>Move Generator V7</h2>
+<h2>Move Generator V8</h2>
 <br> 
 
 
@@ -46,12 +46,10 @@
   <option value="TYPE_DARK">Dark</option>
   <option value="TYPE_PUPPET">Puppet</option>
 </select><br><br>  
-    <label>Category:</label>
-<select id="category">
+    <label>Category:</label><select id="category">
   <option value="PHYSICAL">Physical</option>
   <option value="SPECIAL">Special</option>
-  <option value="STATUS">Status</option>
-</select><br><br>  
+  <option value="STATUS">Status</option></select><br><br>  
  <label>Accuracy (default is 100%):</label><input id="accuracy" type="number" placeholder="0"><label>%</label><br><br>  
  <label>PP (default is 10):</label><input id="accuracy" type="number" placeholder="0"><label>%</label><br><br>
 <label>Priority (default is 0):</label><input id="priority" type="number"><br><br>
@@ -80,7 +78,7 @@ function generate() {
     const pp = document.getElementById("pp").value || "10";
     const target = document.getElementById("target").value || "SELECTED";
     const priority = document.getElementById("priority").value || "0";
-    const category = document.getElementById("category").value || "PHYSICAL";
+    const category = document.getElementById("category").value;
 
 
     const output = `[MOVE_${movename}] =
